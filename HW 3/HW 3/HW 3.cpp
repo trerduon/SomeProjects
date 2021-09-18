@@ -1,21 +1,53 @@
-// HW 3.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!\n";
+    setlocale(LC_ALL, "");
+
+    bool a = 0;
+    while (a != 1)
+    {
+        cout << "Введите номер домашнего задания: \n";
+        int homework;
+        cin >> homework;
+
+        switch (homework)
+        {
+        case 3:
+            {
+                cout << "Введите номер задания: \n[1] - Заем \n[2] - Ссуда \n[3] - Копирование файла \n[4] - Фильтр \n[5] - Сортировка букв \n";
+                int operation;
+                cin >> operation;
+                switch (operation)
+                {
+                case 1:
+                    {
+                        cout << "Введите сумму займа, процент и срок через пробел" << endl;
+                        float S;
+                        float p;
+                        float n;
+                        cin >> S >> p >> n;
+                        float r;
+                        r = p / 100;
+                        cout << S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1)) << endl;
+                    }
+                    break;
+                case 2: 
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                }
+            }
+            break;
+        }
+        cout << "Нажмите 1, чтобы завершить программу" << endl;
+        cin >> a;
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

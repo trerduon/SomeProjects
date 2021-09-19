@@ -2,6 +2,7 @@
 #include <cmath>
 #include <fstream>
 #include <string>
+#include <stdio.h>
 
 using namespace std;
 
@@ -89,6 +90,20 @@ int main()
                         string str;
                         cin >> str;
 
+                        for (int i = 0; i < (str.length() - 1); i++)
+                        {
+                            for (int j = i + 1; j < str.length(); j++)
+                            {
+                                if (str[j] < str[i])
+                                {
+                                    char k = str[j];
+                                    str[j] = str[i];
+                                    str[i] = k;
+                                }
+                            }
+                        }
+
+                        cout << str << endl;
                     }
                     break;
                 }
@@ -99,4 +114,5 @@ int main()
         cin >> a;
     }
 }
+
 

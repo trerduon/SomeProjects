@@ -35,8 +35,31 @@ int main()
                     }
                     break;
                 case 2: 
+                    {
+                        cout << "¬ведите сумму займа, мес€цную выплату и срок через пробел" << endl;
+                        float S;
+                        float m;
+                        float n;
+                        cin >> S >> m >> n;
+                        float p;
+                        float dif = S;
+                        int p1;
+                        for (p = 1; p < 100; p++)
+                        {
+                            float r = p / 100;
+                            if (abs(m - S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1))) < dif)
+                            {
+                                dif = m - S * r * pow(1 + r, n) / (12 * (pow(1 + r, n) - 1));
+                                p1 = p;
+                            }
+                        }
+                        cout << p1 << endl;
+                    }
                     break;
                 case 3:
+                    {
+                        
+                    }
                     break;
                 case 4:
                     break;

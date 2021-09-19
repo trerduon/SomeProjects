@@ -1,5 +1,8 @@
 #include <iostream>
 #include <cmath>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
 int main()
@@ -58,12 +61,35 @@ int main()
                     break;
                 case 3:
                     {
-                        
+                        cout << "¬ведите строку \n";
+                        string str;
+                        cin >> str;
+
+                        fstream F("file.txt", ios::in | ios::out | ios::app);
+                        F << str << endl;
                     }
                     break;
                 case 4:
+                    {
+                        fstream F("E:\\Visual studio\\Repos\\SomeProjects\\HW 3\\HW 3\\file.txt");
+                        string str;
+                        F >> str;
+                        int n = 0;
+                        for (char ch : str)
+                        {
+                            if (isdigit(ch))
+                                n = n * 10 + (ch - '0');
+                        }
+                        cout << n << endl;
+                    }
                     break;
                 case 5:
+                    {
+                        cout << "¬ведите последовательность букв" << endl;
+                        string str;
+                        cin >> str;
+
+                    }
                     break;
                 }
             }

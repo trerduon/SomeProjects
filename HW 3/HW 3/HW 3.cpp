@@ -31,6 +31,59 @@ long generator(long m, long i, long c) //ѕсевдогенератор случайных чисел
     return s;
 }
 
+/*int complete(string num, int s)
+{
+    int len = num.length();
+    int arr[100];
+    int newnum = 0;
+    for (int i = 0; i < num.length(); i++)
+    {
+        if (num[len - i] == 'A') arr[i] = 10;
+        else if (num[len - i - 1] == 'B') arr[i] = 11;
+        else if (num[len - i - 1] == 'C') arr[i] = 12;
+        else if (num[len - i - 1] == 'D') arr[i] = 13;
+        else if (num[len - i - 1] == 'E') arr[i] = 14;
+        else if (num[len - i - 1] == 'F') arr[i] = 15;
+        else arr[i] = num[len - i] - '0';
+    }
+    for (int i = 0; i < num.length(); i++)
+        newnum += pow(s, (len - 1 - i)) * arr[i];
+    return newnum;
+}
+*/
+
+int convert(char num[10], int sold)
+{
+    int i, s, k, p;
+    s = 0;
+    p = strlen(num) - 1;
+    for (i = 0; num[i] != '\0'; i++)
+    {
+        switch (toupper(num[i]))
+        {
+        case 'A': k = 10; break;
+        case 'B': k = 11; break;
+        case 'C': k = 12; break;
+        case 'D': k = 13; break;
+        case 'E': k = 14; break;
+        case 'F': k = 15; break;
+        case '1': k = 1; break;
+        case '2': k = 2; break;
+        case '3': k = 3; break;
+        case '4': k = 4; break;
+        case '5': k = 5; break;
+        case '6': k = 6; break;
+        case '7': k = 7; break;
+        case '8': k = 8; break;
+        case '9': k = 9; break;
+        case '0': k = 0; break;
+        }
+        s = s + k * pow(sold, p);
+        p--;
+    }
+    return s;
+}
+
 int main()
 {
     setlocale(LC_ALL, "");
@@ -277,7 +330,29 @@ int main()
                     break;
                 case 9:
                     {
+                        cout << "¬ведите число" << endl;
+                        char num[10];
+                        cin >> num;
+                        cout << "¬ведите систему счислени€ введЄнного числа" << endl;
+                        int sold;
+                        cin >> sold;
+                        cout << "¬ведите систему счислени€, в которую надо перевести число" << endl;
+                        int snew;
+                        cin >> snew;
+
+                        int Tnum;
+
+                        if (sold > 10) Tnum = convert(num, sold);
+                        else int Tnum = stoi(num);
                         
+                        int k = 1, newnum = 0;
+                        while (Tnum != 0) 
+                        {
+                            newnum += Tnum % snew * k; 
+                            Tnum /= snew; 
+                            k *= 10; 
+                        }
+                        cout << newnum << endl;
                     }
                     break;
                 }

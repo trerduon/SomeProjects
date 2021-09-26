@@ -524,7 +524,7 @@ int main()
                     break;
                 case 5:
                     {
-                        
+                        //Ведутся работы
                     }
                     break;
                 }

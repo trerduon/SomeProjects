@@ -4,6 +4,7 @@
 #include <string>
 #include <stdio.h>
 #include <Windows.h>
+#include <vector>
 
 using namespace std;
 
@@ -29,6 +30,14 @@ long generator(long m, long i, long c) //Псевдогенератор случайных чисел
         s = (m * s1 + i) % c;
     }
     return s;
+}
+
+int NODab(int a, int b)
+{
+    if (b == 0)
+        return a;
+    else
+        return NODab(b, a % b);
 }
 
 /*int complete(string num, int s)
@@ -248,7 +257,49 @@ int main()
                     break;
                 case 5:
                     {
-                        cout << "Ведутся технические работы" << endl;
+                        vector<vector<char>> graph(21);
+                        for (int i = 0; i < 21; i++)
+                        {
+                            graph.push_back(vector<char>(41));
+                            for (int j = 0; j < 41; j++)
+                            {
+                                if (j == 20 and i == 10)
+                                    graph[i].push_back('+');
+                                else if (i == 10)
+                                {
+                                    graph[i].push_back('-');
+                                }
+                                else if (j == 20)
+                                    graph[i].push_back('|');
+                                else
+                                {
+                                    graph[i].push_back(' ');
+                                }
+                            }
+                        }
+
+                        for (int i = 0; i < 300; i += 15) // x > 0
+                        {
+                            int y = 10 - round(sinf(i * 3.1415 / 180) * 10.f);
+                            int x = 21 + (i / 15);
+                            graph[y][x] = '+';
+                        }
+
+                        for (int i = 0; i > -300; i -= 15) // x < 0
+                        {
+                            int y = 10 - round(sinf(i * 3.1415 / 180) * 10.f);
+                            int x = 21 + (i / 15);
+                            graph[y][x] = '+';
+                        }
+
+                        for (int i = 0; i < 21; i++) // вывод массива
+                        {
+                            for (int j = 0; j < 41; j++)
+                            {
+                                cout << ("%c", graph[i][j]);
+                            }
+                            cout << endl;
+                        }
                     }
                     break;
                 case 6:
@@ -353,6 +404,86 @@ int main()
                             k *= 10; 
                         }
                         cout << newnum << endl;
+                    }
+                    break;
+                }
+            }
+            break;
+            case 5:
+            {
+                cout << "Введите номер задания: \n[1] - Алгоритм Евклида \n[2] - Решето Эратосфена \n[3] - Обработка текстовых файлов \n[4] - Ряды \n[5] - Файлы \n";
+                int operation;
+                cin >> operation;
+                switch (operation)
+                {
+                case 1:
+                    {
+                        cout << "Введите 2 числа" << endl;
+                        int a, b;
+                        cin >> a >> b;
+                        cout << "Алгоритм Евклида(деление) - " << NODab(a, b) << endl; // Алгоритм Евклида(деление)
+
+                        while (a != b)
+                        {
+                            if (a > b) a = a - b;
+                            else b = b - a;
+                        }
+                        cout << "Вычитание - " << a << endl; // Нахождение НОД вычитанием
+
+                    }
+                    break;
+                case 2:
+                    {
+                        int n;
+                        cout << "Введите число \n";
+                        cin >> n;
+                        int* a = new int[n + 1];
+                        for (int i = 0; i < n + 1; i++) a[i] = i;
+                        for (int i = 2; i < n + 1; i++)
+                        {
+                            if (a[i] != 0)
+                            {
+                                cout << a[i] << endl;
+                                for (int j = i * i; j < n + 1; j += i) a[j] = 0;
+                            }
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        
+                    }
+                    break;
+                case 4:
+                    {
+                        cout << "Задание 1. \nВведите n" << endl;
+                        float n;
+                        cin >> n;
+                        float y = 0, siny = 0;
+                        for (int i = 0; i < n; i++)
+                        {
+                            siny += sin(n);
+                            y += (1 / siny);
+                        }
+                        cout << y << endl;
+                        
+                        cout << "Задание 3. \nВведите n" << endl;
+                        cin >> n;
+                        y = 1;
+                        siny = 0;
+                        float y1 = 1;
+                        for (int i = 1; i < n + 1; i++)
+                        {
+                            y1 *= i;
+                            siny += sin(2 * i);
+                            y *= (y1 / siny);
+                        }
+                        cout << y << endl;
+                    }
+                    break;
+                case 5:
+                    {
+                        
                     }
                     break;
                 }

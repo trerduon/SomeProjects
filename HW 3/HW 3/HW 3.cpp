@@ -451,7 +451,48 @@ int main()
                     break;
                 case 3:
                     {
-                        
+                        cout << "Задание 1. \nВведите символ, на который надо заменить пробел" << endl;
+
+                        char n;
+                        cin >> n;
+                        string str = "hello world";
+                        fstream file("SomeFile.txt");
+                        getline(file, str);
+                        file.close();
+
+                        ofstream ofs;
+                        ofs.open("SomeFile.txt", ofstream::out | ofstream::trunc);
+                        ofs.close();
+
+                        for (int i = 0; i < size(str); i++)
+                            if (str[i] == ' ') str[i] = n;
+
+                        fstream F("SomeFile.txt", ios::in | ios::out | ios::app);
+                        F << str << endl;
+
+
+                        cout << "Задание 2. \n" << endl;
+
+                        string line;
+                        ifstream in("File_5_3_2.txt"); 
+                        if (in.is_open())
+                        {
+                            getline(in, line);
+                        }
+                        in.close();     
+
+                        int count = 0;
+                        int m = 0;
+                        for (int i = 0; i < size(line); i++)
+                        {
+                            if (line[i] != ' ') count += 1;
+                            else
+                            {
+                                if (m < count) m = count;
+                                count = 0;
+                            }
+                        }
+                        cout << "Наибольшая длина слова - " << m << endl;
                     }
                     break;
                 case 4:
